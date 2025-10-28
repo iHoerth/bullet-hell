@@ -376,6 +376,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
   speed: 10
+  bullet: {fileID: 1391535243020341432, guid: fe91ebfcb1dd3284f8d42797e50b1d81, type: 3}
 --- !u!1 &1362705926
 GameObject:
   m_ObjectHideFlags: 0

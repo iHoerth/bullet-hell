@@ -7,6 +7,8 @@ public class PlayerController : MonoBehaviour
     private CharacterController controller;
     public float speed;
 
+    public GameObject bullet;
+
     // 1
     void Awake()
     {
@@ -18,28 +20,44 @@ public class PlayerController : MonoBehaviour
     void OnEnable()
     {
         playerActions.Enable();
+        playerActions.Player.Attack.performed += ctx => Shoot();
+        playerActions.Player.Dodge.performed += ctx => DodgeRoll();
     }
 
     // 3
     void Start()
     {
-        // Get character controller o cualquier componente que requiera (salvo el transform, ese puedo usarlo de 1)
-
     }
 
     // Update is called once per frame and after Awake() -> OnEnable() -> Start()
     void Update()
     {
-        // leer input
-        Vector2 input = playerActions.Player.Move.ReadValue<Vector2>();
-        // convertir a v3
-        Vector3 moveDirection = new Vector3(input.x, 0, input.y);
-        // pasar a moveDirection() del CC
-        controller.Move(moveDirection * speed * Time.deltaTime);
+        Move();
     }
 
     void OnDisable()
     {
         playerActions.Disable();
+    }
+
+    void Move()
+    {
+        // leer inputs y convertir a v3
+        Vector2 input = playerActions.Player.Move.ReadValue<Vector2>();
+        Vector3 moveDirection = new Vector3(input.x, 0, input.y);
+
+        // pasar el moveDirection() al CC
+        controller.Move(moveDirection * speed * Time.deltaTime);
+    }
+
+    void Shoot()
+    {   
+        Instantiate(bullet, transform.position, transform.rotation);
+        Debug.Log("Bang bang!");
+    }
+
+    void DodgeRoll()
+    {
+        Debug.Log("Dodge Roll!");
     }
 }
