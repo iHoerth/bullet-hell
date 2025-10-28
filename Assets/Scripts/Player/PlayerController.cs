@@ -7,8 +7,11 @@ public class PlayerController : MonoBehaviour
     private CharacterController controller;
     public float speed;
 
-    public GameObject bulletPrefab;
+    public Bullet bulletPrefab;
 
+    public int damage = 10;
+    public int health = 100;
+    
     // 1
     void Awake()
     {
@@ -42,7 +45,7 @@ public class PlayerController : MonoBehaviour
         Vector2 input = playerActions.Player.Move.ReadValue<Vector2>();
         Vector3 moveDirection = new Vector3(input.x, 0, input.y);
 
-        // pasar el moveDirection() al CC
+        // pasar el m;oveDirection() al CC
         controller.Move(moveDirection * speed * Time.deltaTime);
     }
 
@@ -67,7 +70,9 @@ public class PlayerController : MonoBehaviour
     void Shoot()
     {   
         // Create bullet prefab instance when Shoot is called
-        GameObject bulletInstance = Instantiate(bulletPrefab, transform.position, transform.rotation);
+        Bullet bulletInstance = Instantiate(bulletPrefab, transform.position, transform.rotation);
+        bulletInstance.damage = damage;
+
         // Ignore collision between player and bullet instance to avoid bullet insta disappearing
         Physics.IgnoreCollision(bulletInstance.GetComponent<Collider>(), GetComponent<Collider>());
     }

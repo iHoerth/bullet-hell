@@ -6,6 +6,9 @@ public class Bullet : MonoBehaviour
     public int bulletSpeed = 50;
     public SphereCollider collider;
 
+    public int damage;
+
+
     void Awake()
     {
         collider = GetComponent<SphereCollider>();
@@ -18,8 +21,20 @@ public class Bullet : MonoBehaviour
     // This is called on collision (IsTrigger == true) 
     void OnTriggerEnter(Collider other)
     {
+        if(other.tag == "Enemy")
+        {
+            Enemy enemy = other.GetComponent<Enemy>();
+            Debug.Log("Daño realizado" + damage);
+            enemy.TakeDamage(damage);
+        }
+
+        BulletImpact();
+    }
+
+    void BulletImpact()
+    {
         // reproducir sonido?
-        Debug.Log("Bullet Sound! BAM");
+        // Debug.Log("Bullet Sound! BAM");
         // instanciar efecto de bala??
         Debug.Log("Bullet Effect");
         // Destroy this gameObject on trigger

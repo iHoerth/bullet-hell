@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
-    public GameObject enemyPrefab;
+    public Enemy enemyPrefab;
     public GameObject player;
 
     private Vector3 spawnOffset;

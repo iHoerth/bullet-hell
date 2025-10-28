@@ -275,7 +275,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b761a6a41bd5e904b8c1e923db55c914, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemySpawner
-  enemyPrefab: {fileID: 6966002108211538388, guid: 93885784ada9ca9419e63b796b38b9c1, type: 3}
+  enemyPrefab: {fileID: -6286556597972208389, guid: 93885784ada9ca9419e63b796b38b9c1, type: 3}
   player: {fileID: 1030784086}
   spawnTime: 2
   spawnRadius: 10
@@ -307,7 +307,7 @@ GameObject:
   - component: {fileID: 1030784088}
   - component: {fileID: 1030784087}
   - component: {fileID: 1030784091}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -423,7 +423,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
   speed: 10
-  bulletPrefab: {fileID: 1391535243020341432, guid: fe91ebfcb1dd3284f8d42797e50b1d81, type: 3}
+  bulletPrefab: {fileID: -7428604230347422022, guid: fe91ebfcb1dd3284f8d42797e50b1d81, type: 3}
+  damage: 10
+  health: 100
 --- !u!1 &1362705926
 GameObject:
   m_ObjectHideFlags: 0
