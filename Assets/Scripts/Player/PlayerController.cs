@@ -7,7 +7,7 @@ public class PlayerController : MonoBehaviour
     private CharacterController controller;
     public float speed;
 
-    public GameObject bullet;
+    public GameObject bulletPrefab;
 
     // 1
     void Awake()
@@ -24,15 +24,11 @@ public class PlayerController : MonoBehaviour
         playerActions.Player.Dodge.performed += ctx => DodgeRoll();
     }
 
-    // 3
-    void Start()
-    {
-    }
-
     // Update is called once per frame and after Awake() -> OnEnable() -> Start()
     void Update()
     {
         Move();
+        Look();
     }
 
     void OnDisable()
@@ -50,10 +46,26 @@ public class PlayerController : MonoBehaviour
         controller.Move(moveDirection * speed * Time.deltaTime);
     }
 
+    void Look()
+    {
+        Vector2 mousePos = playerActions.Player.Look.ReadValue<Vector2>();
+        Ray ray = Camera.main.ScreenPointToRay(mousePos);
+
+        if(Physics.Raycast(ray, out RaycastHit hit))
+        {
+            // Debug.Log("IMPACTO POINTO :" + hit.point);
+            Vector3 lookPoint = hit.point;
+            lookPoint.y = transform.position.y;
+            transform.LookAt(lookPoint);
+            Debug.DrawRay(ray.origin, ray.direction * 100f, Color.red);
+        }
+        
+    }
+
     void Shoot()
     {   
-        Instantiate(bullet, transform.position, transform.rotation);
-        Debug.Log("Bang bang!");
+        GameObject bulletInstance = Instantiate(bulletPrefab, transform.position, transform.rotation);
+        Physics.IgnoreCollision(bulletInstance.GetComponent<Collider>(), GetComponent<Collider>());
     }
 
     void DodgeRoll()
