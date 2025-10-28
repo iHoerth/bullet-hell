@@ -31,6 +31,12 @@ public class Bullet : MonoBehaviour
         BulletImpact();
     }
 
+    void OnBecameInvisible()
+    {
+        // destroy bullets as soon as they leave the camera vision for eficiency
+        Destroy(gameObject);
+    }
+
     void BulletImpact()
     {
         // reproducir sonido?
