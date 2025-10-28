@@ -48,28 +48,33 @@ public class PlayerController : MonoBehaviour
 
     void Look()
     {
+        // Get mouse position
         Vector2 mousePos = playerActions.Player.Look.ReadValue<Vector2>();
+        // Cast ray to mouse pos
         Ray ray = Camera.main.ScreenPointToRay(mousePos);
 
         if(Physics.Raycast(ray, out RaycastHit hit))
         {
-            // Debug.Log("IMPACTO POINTO :" + hit.point);
+            // Store hit point in a new variable
             Vector3 lookPoint = hit.point;
+            // Adjust "y" to match player height, otherwise it is at 0 (plane is at y = 0)
             lookPoint.y = transform.position.y;
             transform.LookAt(lookPoint);
-            Debug.DrawRay(ray.origin, ray.direction * 100f, Color.red);
         }
         
     }
 
     void Shoot()
     {   
+        // Create bullet prefab instance when Shoot is called
         GameObject bulletInstance = Instantiate(bulletPrefab, transform.position, transform.rotation);
+        // Ignore collision between player and bullet instance to avoid bullet insta disappearing
         Physics.IgnoreCollision(bulletInstance.GetComponent<Collider>(), GetComponent<Collider>());
     }
 
     void DodgeRoll()
-    {
+    {   
+        // Placeholder before real implementation
         Debug.Log("Dodge Roll!");
     }
 }
