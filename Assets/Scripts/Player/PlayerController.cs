@@ -12,7 +12,7 @@ public class PlayerController : MonoBehaviour
 
     public int damage = 10;
     public int health = 100;
-    public float invulnerabilityDuration = 2f;
+    public float invulnerabilityDuration = 1f;
     public float invulnerabilityTimer = 0f;
     public float shootCooldown = 0.5f;
     public float shootTimer = 0f;
@@ -91,7 +91,7 @@ public class PlayerController : MonoBehaviour
         shootTimer = shootCooldown;
     }
 
-    void TakeDamage(int damage)
+    public void TakeDamage(int damage)
     {
         if(invulnerabilityTimer > 0) return;
 

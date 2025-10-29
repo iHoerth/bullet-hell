@@ -128,9 +128,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Enemy2
   player: {fileID: 0}
-  speed: 5
-  damage: 5
+  speed: 7
+  damage: 10
   health: 20
+  attackRange: 3
 --- !u!54 &7868897224306536486
 Rigidbody:
   m_ObjectHideFlags: 0

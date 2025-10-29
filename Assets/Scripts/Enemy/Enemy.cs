@@ -3,11 +3,13 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {   
     public GameObject player;
+    private PlayerController playerController;
     private Rigidbody rb;
     
     public float speed = 5f;
     public int damage;
     public int health;
+    public float attackRange = 3f;
 
     void Awake()
     {
@@ -19,6 +21,7 @@ public class Enemy : MonoBehaviour
     {   
         // Since the enemy is a prefab, the player has to be searched in runtime as follows
         player = GameObject.FindWithTag("Player");
+        playerController = player.GetComponent<PlayerController>();
         rb = GetComponent<Rigidbody>();
     }
     // Update is called once per frame
@@ -30,6 +33,14 @@ public class Enemy : MonoBehaviour
         // rb.MovePosition(rb.position + dir * speed * Time.fixedDeltaTime);
         rb.linearVelocity = dir * speed;
         transform.LookAt(player.transform.position);
+
+        // Attack
+        float distance = Vector3.Distance(transform.position, player.transform.position);
+
+        if(distance <= attackRange)
+        {
+            playerController.TakeDamage(damage);
+        }
     }
 
     public void TakeDamage(int damage)
@@ -43,6 +54,11 @@ public class Enemy : MonoBehaviour
             health = 0;
             Die();
         }
+    }
+
+    public void Attack()
+    {   
+        // Vector3.distance returns a float with the distance between two R3 points (pythagoras)
     }
 
     void Die()
