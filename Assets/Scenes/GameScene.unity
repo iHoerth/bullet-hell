@@ -426,6 +426,10 @@ MonoBehaviour:
   bulletPrefab: {fileID: -7428604230347422022, guid: fe91ebfcb1dd3284f8d42797e50b1d81, type: 3}
   damage: 10
   health: 100
+  invulnerabilityDuration: 2
+  invulnerabilityTimer: 0
+  shootCooldown: 0.5
+  shootTimer: 0
 --- !u!1 &1362705926
 GameObject:
   m_ObjectHideFlags: 0
@@ -533,7 +537,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 9.91156, y: 33.807495, z: 9.91156}
+  m_LocalScale: {x: 117.31186, y: 400.14087, z: 117.31186}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}

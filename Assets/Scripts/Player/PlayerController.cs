@@ -11,6 +11,10 @@ public class PlayerController : MonoBehaviour
 
     public int damage = 10;
     public int health = 100;
+    public float invulnerabilityDuration = 2f;
+    public float invulnerabilityTimer = 0f;
+    public float shootCooldown = 0.5f;
+    public float shootTimer = 0f;
     
     // 1
     void Awake()
@@ -32,6 +36,12 @@ public class PlayerController : MonoBehaviour
     {
         Move();
         Look();
+
+        if (invulnerabilityTimer > 0)
+            invulnerabilityTimer -= Time.deltaTime;
+
+        if (shootTimer > 0)
+            shootTimer -= Time.deltaTime;        
     }
 
     void OnDisable()
@@ -69,17 +79,43 @@ public class PlayerController : MonoBehaviour
 
     void Shoot()
     {   
+        if(shootTimer > 0) return;
+
         // Create bullet prefab instance when Shoot is called
         Bullet bulletInstance = Instantiate(bulletPrefab, transform.position, transform.rotation);
         bulletInstance.damage = damage;
-
         // Ignore collision between player and bullet instance to avoid bullet insta disappearing
         Physics.IgnoreCollision(bulletInstance.GetComponent<Collider>(), GetComponent<Collider>());
+        
+        shootTimer = shootCooldown;
+    }
+
+    void TakeDamage(int damage)
+    {
+        if(invulnerabilityTimer > 0) return;
+
+        if(health > damage)
+        {
+            health -= damage;
+            invulnerabilityTimer = invulnerabilityDuration;
+        } 
+        
+        else 
+        {
+            health = 0;
+            Die();
+        }
+
     }
 
     void DodgeRoll()
     {   
         // Placeholder before real implementation
         Debug.Log("Dodge Roll!");
+    }
+
+    void Die()
+    {
+        Debug.Log("u ded");
     }
 }
