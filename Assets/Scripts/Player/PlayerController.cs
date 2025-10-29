@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -86,7 +87,7 @@ public class PlayerController : MonoBehaviour
         bulletInstance.damage = damage;
         // Ignore collision between player and bullet instance to avoid bullet insta disappearing
         Physics.IgnoreCollision(bulletInstance.GetComponent<Collider>(), GetComponent<Collider>());
-        
+
         shootTimer = shootCooldown;
     }
 

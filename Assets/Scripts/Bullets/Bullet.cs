@@ -4,14 +4,14 @@ public class Bullet : MonoBehaviour
 {   
     private Rigidbody rBody;
     public int bulletSpeed = 50;
-    public SphereCollider collider;
+    public SphereCollider bulletCollider;
 
     public int damage;
 
 
     void Awake()
     {
-        collider = GetComponent<SphereCollider>();
+        bulletCollider = GetComponent<SphereCollider>();
         rBody = GetComponent<Rigidbody>();
 
         rBody.useGravity = false;
