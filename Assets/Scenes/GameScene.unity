@@ -791,7 +791,7 @@ MonoBehaviour:
   bulletPrefab: {fileID: -7428604230347422022, guid: fe91ebfcb1dd3284f8d42797e50b1d81, type: 3}
   damage: 10
   health: 100
-  invulnerabilityDuration: 1
+  invulnerabilityDuration: 0.3
   invulnerabilityTimer: 0
   shootCooldown: 0.33
   shootTimer: 0

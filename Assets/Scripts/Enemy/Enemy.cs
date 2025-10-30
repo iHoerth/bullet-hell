@@ -25,14 +25,13 @@ public class Enemy : MonoBehaviour
 
     void Start()
     {       
-
         // Since the enemy is a prefab, the player has to be searched in runtime as follows
         player = GameObject.FindWithTag("Player");
         playerController = player.GetComponent<PlayerController>();
         rb = GetComponent<Rigidbody>();
-
         anim = GetComponent<Animator>();
     }
+
     // Update is called once per frame
     void FixedUpdate()
     {   
@@ -77,8 +76,11 @@ public class Enemy : MonoBehaviour
     {   
         anim.SetBool("isAttacking", true);
         isAttacking = true;
-        
-        // will implement later, i need an Ienumerator using yield return to wait before check
+    }
+    
+    // This gets called by the Animator Event DealDamage, in the exact frame where the weapon impacts
+    public void DealDamage()
+    {
         if(distanceToPlayer <= attackRange)
         {
             playerController.TakeDamage(damage);
