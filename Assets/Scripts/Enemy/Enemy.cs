@@ -28,11 +28,11 @@ public class Enemy : MonoBehaviour
     void FixedUpdate()
     {   
         if (player == null) return;
-        // use rigidbody to move enemy to player
-        Vector3 dir = (player.transform.position - transform.position).normalized;
-        // rb.MovePosition(rb.position + dir * speed * Time.fixedDeltaTime);
-        rb.linearVelocity = dir * speed;
-        transform.LookAt(player.transform.position);
+        Vector3 target = new Vector3(player.transform.position.x, transform.position.y , player.transform.position.z);
+        Vector3 dir = (target - transform.position).normalized;
+
+        transform.LookAt(target);
+        transform.position += dir * speed * Time.deltaTime;
 
         // Attack
         float distance = Vector3.Distance(transform.position, player.transform.position);

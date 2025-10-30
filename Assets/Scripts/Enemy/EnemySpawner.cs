@@ -31,6 +31,7 @@ public class EnemySpawner : MonoBehaviour
         spawnDirection = new Vector3(randomDir.x, 0f, randomDir.y);
         // Move center to player and escalate
         Vector3 spawnPos = player.transform.position + spawnDirection * spawnDistance;
+        spawnPos.y = 0;
         // Adjust rotation to make it look the player
         Quaternion spawnRotation = Quaternion.LookRotation(player.transform.position - spawnPos);
 

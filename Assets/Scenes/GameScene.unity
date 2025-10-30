@@ -639,7 +639,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b761a6a41bd5e904b8c1e923db55c914, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemySpawner
-  enemyPrefab: {fileID: -6286556597972208389, guid: 93885784ada9ca9419e63b796b38b9c1, type: 3}
+  enemyPrefab: {fileID: 8334061291095551375, guid: d4f8d9f80c8c8df48b9d97bc4b12d59b, type: 3}
   player: {fileID: 1030784086}
   spawnTime: 2
   spawnDistance: 40
@@ -861,7 +861,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: d013eaa4fb0838d41ae0e0aa1f055588, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
