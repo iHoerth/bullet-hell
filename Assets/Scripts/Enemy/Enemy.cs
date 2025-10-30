@@ -15,6 +15,7 @@ public class Enemy : MonoBehaviour
     public float attackRange = 3f;
 
     float distanceToPlayer;
+
     // Called once to initialize some variables
     void Awake()
     {
@@ -36,11 +37,8 @@ public class Enemy : MonoBehaviour
     void FixedUpdate()
     {   
         Move();
-
-
         // Calculate distanceToPlayer to player
         distanceToPlayer = Vector3.Distance(transform.position, player.transform.position);
-
         if(distanceToPlayer <= attackRange)
         {   
             Attack();
@@ -51,7 +49,6 @@ public class Enemy : MonoBehaviour
     void Move()
     {
         if (player == null) return;
-
         speed = isAttacking? 1f : 5f;
 
         // Get Player position. This logic could be in a helper GetTargetPosition() but not sure
@@ -80,10 +77,8 @@ public class Enemy : MonoBehaviour
     {   
         anim.SetBool("isAttacking", true);
         isAttacking = true;
-        // activar animación
-        // detener movimiento
-        // esperar duración * 0.33
-
+        
+        // will implement later, i need an Ienumerator using yield return to wait before check
         if(distanceToPlayer <= attackRange)
         {
             playerController.TakeDamage(damage);
@@ -99,8 +94,8 @@ public class Enemy : MonoBehaviour
 
     void Die()
     {
-        // Animacion de muerte ???
-        // Sonido de muerte todavia no tengo
+        // death animation ???
+        // death sound?????
         Destroy(gameObject);
     }
 }
