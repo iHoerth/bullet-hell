@@ -28,7 +28,7 @@ public class Bullet : MonoBehaviour
             enemy.TakeDamage(damage);
         }
 
-        BulletImpact();
+        BulletImpact(other);
     }
 
     void OnBecameInvisible()
@@ -37,12 +37,16 @@ public class Bullet : MonoBehaviour
         Destroy(gameObject);
     }
 
-    void BulletImpact()
+    void BulletImpact(Collider other)
     {
         // reproducir sonido?
         // Debug.Log("Bullet Sound! BAM");
         // instanciar efecto de bala??
-        Debug.Log("Bullet Effect");
+        Debug.Log($"Object: {other.name}");
+        Debug.Log($"Tag: {other.tag}");
+        Debug.Log($"Layer: {LayerMask.LayerToName(other.gameObject.layer)}");
+        Debug.Log($"Collider type: {other.GetType()}");
+        Debug.Log($"Root object: {other.transform.root.name}");
         // Destroy this gameObject on trigger
         Destroy(gameObject);
     }

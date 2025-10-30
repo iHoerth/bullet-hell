@@ -81,12 +81,17 @@ public class PlayerController : MonoBehaviour
     void Shoot()
     {   
         if(shootTimer > 0) return;
+        Debug.Log("Shoot");
+
+        // Adjust bullet positio nto avoid collision with plane floor
+        Vector3 spawnPos = transform.position + transform.forward * 0.5f + Vector3.up * 1.5f;
 
         // Create bullet prefab instance when Shoot is called
-        Bullet bulletInstance = Instantiate(bulletPrefab, transform.position, transform.rotation);
+        Bullet bulletInstance = Instantiate(bulletPrefab, spawnPos, transform.rotation);
+
         bulletInstance.damage = damage;
         // Ignore collision between player and bullet instance to avoid bullet insta disappearing
-        Physics.IgnoreCollision(bulletInstance.GetComponent<Collider>(), GetComponent<Collider>());
+        Physics.IgnoreCollision(bulletInstance.GetComponent<Collider>(), controller.GetComponent<Collider>());
 
         shootTimer = shootCooldown;
     }
