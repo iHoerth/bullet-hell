@@ -13,7 +13,9 @@ public class PlayerController : MonoBehaviour
     public Bullet bulletPrefab;
 
     public int damage = 10;
-    public int health = 100;
+    public int maxHealth = 100;
+    public int health;
+
     public float invulnerabilityDuration = 1f;
     public float invulnerabilityTimer = 0f;
     public float shootCooldown = 0.5f;
@@ -25,6 +27,7 @@ public class PlayerController : MonoBehaviour
         playerActions = new InputSystem_Actions();
         controller = GetComponent<CharacterController>();
         anim = GetComponent<Animator>();
+        health = maxHealth;
     }
 
     // 2
