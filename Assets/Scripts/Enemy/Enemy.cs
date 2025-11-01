@@ -8,20 +8,14 @@ public class Enemy : MonoBehaviour
     private Animator anim;
 
 
-    public float speed = 5f;
-    public int damage;
+    public float baseSpeed;
+    public float baseDamage;
+    public float baseHealth;
+    public float attackRange = 4f;
+    public float attackTriggerRange = 3f;
     private bool isAttacking = false;
-    public int health;
-    public float attackRange = 3f;
 
     float distanceToPlayer;
-
-    // Called once to initialize some variables
-    void Awake()
-    {
-        health = 20;
-        damage = 5;
-    }
 
     void Start()
     {       
@@ -38,7 +32,7 @@ public class Enemy : MonoBehaviour
         Move();
         // Calculate distanceToPlayer to player
         distanceToPlayer = Vector3.Distance(transform.position, player.transform.position);
-        if(distanceToPlayer <= attackRange)
+        if(distanceToPlayer <= attackTriggerRange)
         {   
             Attack();
         }
@@ -48,25 +42,25 @@ public class Enemy : MonoBehaviour
     void Move()
     {
         if (player == null) return;
-        speed = isAttacking? 1f : 5f;
-
+        float speedWhileAttackingFactor = isAttacking ? 10f : 1f;
         // Get Player position. This logic could be in a helper GetTargetPosition() but not sure
         Vector3 target = new Vector3(player.transform.position.x, transform.position.y , player.transform.position.z);
         Vector3 dir = (target - transform.position).normalized;
 
         transform.LookAt(target);
-        transform.position += dir * speed * Time.deltaTime;
+        transform.position += (dir * baseSpeed * Time.deltaTime) / speedWhileAttackingFactor;
     }
 
-    public void TakeDamage(int damage)
+    public void TakeDamage(float damage)
     {   
-        if(health > damage)
+        if(baseHealth > damage)
         {
-            health -= damage;
+
+            baseHealth -= damage;
         } 
         else 
         {
-            health = 0;
+            baseHealth = 0;
             Die();
         }
     }
@@ -83,7 +77,7 @@ public class Enemy : MonoBehaviour
     {
         if(distanceToPlayer <= attackRange)
         {
-            playerController.TakeDamage(damage);
+            playerController.TakeDamage(baseDamage);
         }
     }
 

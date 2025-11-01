@@ -11,6 +11,11 @@ public class EnemySpawner : MonoBehaviour
     public float spawnTime = 2.5f;
     public float spawnDistance = 35f;
 
+    public float difficulty = 1f; 
+    public float baseSpeed = 8f;
+    public float baseDamage = 10f;
+    public float baseHealth = 20;
+
     // Update is called once per frame
     void Update()
     {
@@ -35,6 +40,15 @@ public class EnemySpawner : MonoBehaviour
         // Adjust rotation to make it look the player
         Quaternion spawnRotation = Quaternion.LookRotation(player.transform.position - spawnPos);
 
-        Instantiate(enemyPrefab, spawnPos,spawnRotation);
+        Enemy newEnemy = Instantiate(enemyPrefab, spawnPos,spawnRotation);
+
+        // Make enemies scale based on difficulty
+        float speed = baseSpeed * Mathf.Pow(1.25f, difficulty - 1);  // multiplicative 20% each difficulty level
+        float damage = baseDamage * Mathf.Pow(1.5f, difficulty - 1); // multiplicative 50% each difficulty level
+        float health = this.baseHealth;
+
+        newEnemy.baseDamage = damage;
+        newEnemy.baseSpeed = speed;
+        newEnemy.baseHealth = health;
     }
 }

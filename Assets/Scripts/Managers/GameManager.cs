@@ -5,10 +5,13 @@ using TMPro;
 
 public class GameManager : MonoBehaviour
 {   
-    public float globalTimer = 5f;
-    public PlayerController player;
+    public float globalTimer = 180f;
+    public float difficultyChange = 90f;
 
+    public PlayerController player;
+    public EnemySpawner spawner;
     public TMP_Text timerText;
+
 
     void Update()
     {
@@ -25,6 +28,11 @@ public class GameManager : MonoBehaviour
             Defeat();
         }
         
+        if(globalTimer <= difficultyChange)
+        {
+            spawner.difficulty = 2;
+            spawner.spawnTime = 1f;
+        }
     }
 
     public void Victory()
@@ -35,5 +43,10 @@ public class GameManager : MonoBehaviour
     public void Defeat()
     {
         SceneManager.LoadScene("LoseScene");
+    }
+
+    public void RaiseDifficulty()
+    {
+
     }
 }

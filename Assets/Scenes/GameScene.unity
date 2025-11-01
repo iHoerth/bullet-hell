@@ -412,7 +412,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
   globalTimer: 180
+  difficultyChange: 60
   player: {fileID: 958551955}
+  spawner: {fileID: 941257013}
   timerText: {fileID: 463478323}
 --- !u!4 &686191439
 Transform:
@@ -773,6 +775,10 @@ MonoBehaviour:
   player: {fileID: 958551953}
   spawnTime: 2
   spawnDistance: 40
+  difficulty: 1
+  baseSpeed: 6
+  baseDamage: 10
+  baseHealth: 20
 --- !u!4 &941257014
 Transform:
   m_ObjectHideFlags: 0
@@ -1665,23 +1671,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2565785835349252670, guid: e29a094ae1fd71947988632bec57325c, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.9999061
       objectReference: {fileID: 0}
     - target: {fileID: 2565785835349252670, guid: e29a094ae1fd71947988632bec57325c, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: 0.01370887
       objectReference: {fileID: 0}
     - target: {fileID: 2565785835349252670, guid: e29a094ae1fd71947988632bec57325c, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 2565785835349252670, guid: e29a094ae1fd71947988632bec57325c, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 2565785835349252670, guid: e29a094ae1fd71947988632bec57325c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
+      value: 1.571
       objectReference: {fileID: 0}
     - target: {fileID: 2565785835349252670, guid: e29a094ae1fd71947988632bec57325c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y

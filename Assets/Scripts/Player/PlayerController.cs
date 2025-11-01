@@ -12,9 +12,9 @@ public class PlayerController : MonoBehaviour
 
     public Bullet bulletPrefab;
 
-    public int damage = 10;
-    public int maxHealth = 100;
-    public int health;
+    public float damage = 10f;
+    public float maxHealth = 100f;
+    public float health;
 
     public float invulnerabilityDuration = 1f;
     public float invulnerabilityTimer = 0f;
@@ -92,7 +92,6 @@ public class PlayerController : MonoBehaviour
     public void Shoot()
     {   
         if (shootTimer > 0) return;
-        Debug.Log("Shoot");
 
         anim.SetBool("isAttacking", true);
         isAttacking = true;
@@ -115,7 +114,7 @@ public class PlayerController : MonoBehaviour
         isAttacking = false;        
     }
 
-    public void TakeDamage(int damage)
+    public void TakeDamage(float damage)
     {
         if(invulnerabilityTimer > 0) return;
 
